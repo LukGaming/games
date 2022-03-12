@@ -1,5 +1,5 @@
-<form enctype="multipart/form-data">
-    <div class="inputs-form">
+<form enctype="multipart/form-data" >
+    <div class="inputs-form " >
         <mat-form-field class="input" appearance="fill">
             <mat-label>Nome do Jogo</mat-label>
             <input matInput type="text" [(ngModel)]="game.name" name="name">
@@ -21,20 +21,19 @@
             <label for="images" class="images_games_label">
                 <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon> Imagens do jogo
             </label>
-
-            {{game.images.length}}
         </div>
 
         <input #fileInput type="file" id="images" (change)="onFileInput($event)" multiple style="display: none;" />
         <div class="imagens-preview">
-            <div class="images" *ngFor="let image of images; index as i">
+            <div class="images" *ngFor="let image of images; index as i" class="container-image">
                 <img  mat-card-md-image src={{image}} class="image-preview">
                 <div class="delete_icon" ><mat-icon color="warn" (click)="removeImage(i)">delete</mat-icon></div>
-                
             </div>
         </div>
+        
+
     </div>
 
     <button class="btn-submit" mat-raised-button color="primary">Primary</button>
-
+    
 </form>
