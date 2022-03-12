@@ -1,28 +1,57 @@
-form{
-    margin: 10px;
+form {
+  margin: 10px;
 }
 .inputs-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .title-form {
-    display: flex;
-    font-size: 2rem;
-    margin: 10px;
-  }
-  .input,
-  .btnSubmit,
-  .title-form {
-    margin-left: 10vw;
-    margin-right: 10vw;
-  }
-  .btnSubmit {
-    display: flex;
-  }
-  .edit-product{
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-around;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.title-form {
+  display: flex;
+  font-size: 2rem;
+  margin: 10px;
+}
+.input,
+.btnSubmit,
+.title-form,
+.images_game,
+.btn-submit,
+.image-preview {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+.btnSubmit {
+  display: flex;
+}
+.edit-product {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around;
+}
+.images_game {
+  display: flex;
+  flex-direction: column;
+}
+.images_games_label {
+  font-size: 1.2rem;
+}
+.btn-submit{
+  margin-top: 20px;
+}
+.image-preview{
+  width: 200px;
+  margin: 10px;
+  border-radius: 5px;
+}
+.imagens-preview{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.delete_icon{
+  position: absolute;
+  top: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+

@@ -1,25 +1,40 @@
-<form>
+<form enctype="multipart/form-data">
     <div class="inputs-form">
         <mat-form-field class="input" appearance="fill">
             <mat-label>Nome do Jogo</mat-label>
             <input matInput type="text" [(ngModel)]="game.name" name="name">
         </mat-form-field>
         <mat-form-field class="input" appearance="fill">
-            <mat-label>Ano de Lançamento</mat-label>
-            <mat-form-field appearance="fill">
-                <mat-label>Month and Year</mat-label>
-                <input matInput [matDatepicker]="dp" [formControl]="date">
-                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dp
-                                startView="multi-year"
-                                panelClass="example-month-picker">
+            <mat-form-field appearance="outline">
+                <mat-label>Ano de lançamento</mat-label>
+                <input [(ngModel)]="year" [formControl]="date" matInput [matDatepicker]="picker" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="multi-year" (yearSelected)="chosenYearHandler($event, picker)">
                 </mat-datepicker>
-              </mat-form-field>
+            </mat-form-field>
         </mat-form-field>
         <mat-form-field class="input" appearance="fill">
             <mat-label>Descricao</mat-label>
-            <input matInput >
+            <input matInput [(ngModel)]="game.description" name="description">
         </mat-form-field>
+        <div class="images_game">
+            <label for="images" class="images_games_label">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon> Imagens do jogo
+            </label>
+
+            {{game.images.length}}
+        </div>
+
+        <input #fileInput type="file" id="images" (change)="onFileInput($event)" multiple style="display: none;" />
+        <div class="imagens-preview">
+            <div class="images" *ngFor="let image of images; index as i">
+                <img  mat-card-md-image src={{image}} class="image-preview">
+                <div class="delete_icon" ><mat-icon color="warn" (click)="removeImage(i)">delete</mat-icon></div>
+                
+            </div>
+        </div>
     </div>
-    
+
+    <button class="btn-submit" mat-raised-button color="primary">Primary</button>
+
 </form>

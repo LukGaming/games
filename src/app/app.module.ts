@@ -10,9 +10,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { FormsModule }   from '@angular/forms';
-//.Material Modules
-
+import { FormsModule, ReactiveFormsModule}   from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+ //.Material Modules
 
 @NgModule({
   declarations: [AppComponent, GameCrudComponent],
@@ -25,7 +26,10 @@ import { FormsModule }   from '@angular/forms';
     MatSelectModule,
     MatInputModule,
     FormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule
     //.Material Modules
   ],
   providers: [],
