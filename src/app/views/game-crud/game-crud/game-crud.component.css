@@ -1,0 +1,28 @@
+form{
+    margin: 10px;
+}
+.inputs-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .title-form {
+    display: flex;
+    font-size: 2rem;
+    margin: 10px;
+  }
+  .input,
+  .btnSubmit,
+  .title-form {
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+  .btnSubmit {
+    display: flex;
+  }
+  .edit-product{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around;
+  }
+  

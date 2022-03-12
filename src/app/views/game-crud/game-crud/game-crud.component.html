@@ -1,0 +1,25 @@
+<form>
+    <div class="inputs-form">
+        <mat-form-field class="input" appearance="fill">
+            <mat-label>Nome do Jogo</mat-label>
+            <input matInput type="text" [(ngModel)]="game.name" name="name">
+        </mat-form-field>
+        <mat-form-field class="input" appearance="fill">
+            <mat-label>Ano de Lançamento</mat-label>
+            <mat-form-field appearance="fill">
+                <mat-label>Month and Year</mat-label>
+                <input matInput [matDatepicker]="dp" [formControl]="date">
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp
+                                startView="multi-year"
+                                panelClass="example-month-picker">
+                </mat-datepicker>
+              </mat-form-field>
+        </mat-form-field>
+        <mat-form-field class="input" appearance="fill">
+            <mat-label>Descricao</mat-label>
+            <input matInput >
+        </mat-form-field>
+    </div>
+    
+</form>
