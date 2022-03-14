@@ -15,6 +15,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule}   from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
  //.Material Modules
 
@@ -27,6 +28,7 @@ import {MatButtonModule} from '@angular/material/button';
     HttpClientModule,
     //.Material Modules
     MatFormFieldModule,
+    MatSnackBarModule,
     MatSelectModule,
     MatInputModule,
     FormsModule,

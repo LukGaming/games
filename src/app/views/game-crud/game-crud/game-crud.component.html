@@ -28,11 +28,14 @@
             de lançamento é obrigatória </div>
         <div class="images_game">
             <label for="images" class="images_games_label">
-                <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon> Imagens do jogo
+                <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon> Selecionar Novas Imagens
             </label>
         </div>
         <input #fileInput type="file" formControlName="images" id="images" (change)="onFileInput($event)" multiple
             style="display: none;" />
+            <div class="imagens-enviadas-text">
+                <div *ngIf="images.length > 0">Novas Imagens</div>
+            </div>
         <div class="imagens-preview">
             <div class="images" *ngFor="let image of images; index as i" class="container-image">
                 <img mat-card-md-image src={{image}} class="image-preview">
@@ -41,9 +44,27 @@
                 </div>
             </div>
         </div>
-        <div class="error-message" *ngIf="!validateGame.get('images')?.valid && validateGame.get('images')?.touched">O
-            jogo deve conter ao menos uma imagem! </div>
+        <hr>
+        <!--Imagens já enviadas-->
+        <div class="imagens-enviadas-text">
+            <div *ngIf="imagesAlreadyUploaded">Imagens já enviadas</div>
+        </div>
+
+        <div class="imagens-preview">
+
+        <div class="images" *ngFor="let image of imagesAlreadyUploaded; index as i" class="container-image">
+            <img mat-card-md-image src={{image.caminho_imagem_game}} class="image-preview">
+            <div class="delete_icon">
+                <mat-icon color="warn" (click)="removeImageAlreadyUploaded(image.id, i)">delete</mat-icon>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="error-message" *ngIf="!validateGame.get('images')?.valid && validateGame.get('images')?.touched">O
+        jogo deve conter ao menos uma imagem! </div>
     </div>
     <button [disabled]="validateGame.invalid" class="btn-submit" mat-raised-button color="primary"
-        (click)="submit($event)">Primary</button>
+        (click)="submit($event)">{{method}}</button>
 </form>

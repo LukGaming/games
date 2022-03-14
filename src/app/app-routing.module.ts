@@ -6,6 +6,10 @@ const routes: Routes = [
     path: 'games/create',
     component: GameCrudComponent
   },
+  {
+    path: 'games/:id/edit',
+    component: GameCrudComponent
+  },
  
 ] // sets up routes constant where you define your routes
 
