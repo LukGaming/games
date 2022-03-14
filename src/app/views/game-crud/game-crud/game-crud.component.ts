@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Game } from '../../game.model'
-import { FormControl } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { GameCrudService } from 'src/app/services/game-crud.service'
 import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS
@@ -14,6 +15,7 @@ import { MatDatepicker } from '@angular/material/datepicker'
 import * as _moment from 'moment'
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment, Moment } from 'moment'
+import { Observer } from 'rxjs'
 const moment = _rollupMoment || _moment
 export const MY_FORMATS = {
   parse: {
@@ -48,9 +50,16 @@ export class GameCrudComponent implements OnInit {
     images: [],
     gameType: []
   }
-  images: any
+  validateGame = new FormGroup({
+    name: new FormControl(this.game.name, Validators.required),
+    release_year: new FormControl(this.game.release_year, Validators.required),
+    description: new FormControl(this.game.description, Validators.required),
+    images: new FormControl(this.game.images, [Validators.required])
+  })
+  images: any = []
   year = ''
-  constructor () {}
+  images_to_upload: any
+  constructor (private gameCrudService: GameCrudService) {}
   chosenYearHandler ($event: any, input: any) {
     let { _d } = $event
     this.year = _d
@@ -60,6 +69,7 @@ export class GameCrudComponent implements OnInit {
   }
   onFileInput ($event: any) {
     this.game.images = $event.target.files
+    this.images_to_upload = $event.target.files
     var images: any = []
     for (let i = 0; i < $event.target.files.length; i++) {
       let reader = new FileReader()
@@ -70,9 +80,23 @@ export class GameCrudComponent implements OnInit {
     }
     this.images = images
   }
-  removeImage(event: any){
-    console.log(event)
+  removeImage (index: any) {
+    // this.game.images.splice(index, 1)
+    this.images.splice(index, 1)
   }
-
+  submit ($event: any) {
+    $event.preventDefault()
+    console.log(this.validateGame.valid)
+    if(this.validateGame.valid){
+      var formData = new FormData()
+      formData.append('name', this.game.name)
+      formData.append('release_year', this.game.release_year)
+      formData.append('description', this.game.description)
+      formData.append('images', this.game.images[0])
+      this.gameCrudService.submit(formData).subscribe(data => {
+        console.log(data)
+      })
+    }
+  }
   ngOnInit (): void {}
 }

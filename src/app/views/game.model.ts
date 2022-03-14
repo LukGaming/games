@@ -1,7 +1,7 @@
 export interface Game{
-    name: String,
-    release_year: String,
-    description: String,
-    images: [],
-    gameType: []
+    name: string,
+    release_year: string,
+    description: string,
+    images: any,
+    gameType: any
 }

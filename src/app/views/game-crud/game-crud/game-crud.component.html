@@ -1,39 +1,49 @@
-<form enctype="multipart/form-data" >
-    <div class="inputs-form " >
+<form enctype="multipart/form-data" [formGroup]="validateGame">
+    <div class="inputs-form ">
         <mat-form-field class="input" appearance="fill">
             <mat-label>Nome do Jogo</mat-label>
-            <input matInput type="text" [(ngModel)]="game.name" name="name">
+            <input matInput type="text" [(ngModel)]="game.name" formControlName="name" name="name">
         </mat-form-field>
+        <div class="error-message" *ngIf="!validateGame.get('name')?.valid && validateGame.get('name')?.touched">O nome
+            do jogo é obrigatório </div>
         <mat-form-field class="input" appearance="fill">
             <mat-form-field appearance="outline">
                 <mat-label>Ano de lançamento</mat-label>
-                <input [(ngModel)]="year" [formControl]="date" matInput [matDatepicker]="picker" />
+                <input [(ngModel)]="year" [formControl]="date" formControlName="release_year" matInput
+                    [matDatepicker]="picker" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker startView="multi-year" (yearSelected)="chosenYearHandler($event, picker)">
                 </mat-datepicker>
             </mat-form-field>
         </mat-form-field>
+        <div class="error-message"
+            *ngIf="!validateGame.get('release_year')?.valid && validateGame.get('release_year')?.touched">A data
+            de lançamento é obrigatória </div>
         <mat-form-field class="input" appearance="fill">
             <mat-label>Descricao</mat-label>
-            <input matInput [(ngModel)]="game.description" name="description">
+            <input matInput [(ngModel)]="game.description" formControlName="description" name="description">
         </mat-form-field>
+        <div class="error-message"
+            *ngIf="!validateGame.get('description')?.valid && validateGame.get('description')?.touched">A data
+            de lançamento é obrigatória </div>
         <div class="images_game">
             <label for="images" class="images_games_label">
                 <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon> Imagens do jogo
             </label>
         </div>
-
-        <input #fileInput type="file" id="images" (change)="onFileInput($event)" multiple style="display: none;" />
+        <input #fileInput type="file" formControlName="images" id="images" (change)="onFileInput($event)" multiple
+            style="display: none;" />
         <div class="imagens-preview">
             <div class="images" *ngFor="let image of images; index as i" class="container-image">
-                <img  mat-card-md-image src={{image}} class="image-preview">
-                <div class="delete_icon" ><mat-icon color="warn" (click)="removeImage(i)">delete</mat-icon></div>
+                <img mat-card-md-image src={{image}} class="image-preview">
+                <div class="delete_icon">
+                    <mat-icon color="warn" (click)="removeImage(i)">delete</mat-icon>
+                </div>
             </div>
         </div>
-        
-
+        <div class="error-message" *ngIf="!validateGame.get('images')?.valid && validateGame.get('images')?.touched">O
+            jogo deve conter ao menos uma imagem! </div>
     </div>
-
-    <button class="btn-submit" mat-raised-button color="primary">Primary</button>
-    
+    <button [disabled]="validateGame.invalid" class="btn-submit" mat-raised-button color="primary"
+        (click)="submit($event)">Primary</button>
 </form>

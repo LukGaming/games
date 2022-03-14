@@ -16,7 +16,8 @@ form {
 .title-form,
 .images_game,
 .btn-submit,
-.image-preview {
+.image-preview,
+.error-message {
   margin-left: 10vw;
   margin-right: 10vw;
 }
@@ -35,31 +36,33 @@ form {
 .images_games_label {
   font-size: 1.2rem;
 }
-.btn-submit{
+.btn-submit {
   margin-top: 20px;
 }
-.image-preview{
+.image-preview {
   width: 200px;
   margin: 10px;
   border-radius: 5px;
- 
 }
-.imagens-preview{
+.imagens-preview {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   position: relative;
 }
-.delete_icon{
+.delete_icon {
   position: absolute;
   top: 5px;
   margin-left: 10px;
   margin-top: 10px;
 }
-.container-image{
+.container-image {
   display: flex;
   flex-direction: row;
   position: relative;
 }
-
+.error-message {
+  font-size: 1.5rem;
+  color: red;
+}
