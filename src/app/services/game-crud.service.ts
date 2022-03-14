@@ -11,7 +11,10 @@ export class GameCrudService {
   baseUrl = 'http://localhost:8000/api/games'
   constructor (private http: HttpClient, private snackbar: MatSnackBar) {}
   post (game: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/create`, game)
+    return this.http.post<any>(`${this.baseUrl}/create`, game, {
+      observe: 'events',
+      reportProgress: true
+    })
   }
   patch (game: any): Observable<any> {
     return this.http.patch<any>(this.baseUrl, game)

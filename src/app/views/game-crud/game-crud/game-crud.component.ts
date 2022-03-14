@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Game } from '../../game.model'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { GameCrudService } from 'src/app/services/game-crud.service'
+
 import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS
@@ -17,6 +18,8 @@ import * as _moment from 'moment'
 import { default as _rollupMoment, Moment } from 'moment'
 import { Observer } from 'rxjs'
 import { ActivatedRoute, Router } from '@angular/router'
+import { HttpEvent, HttpEventType } from '@angular/common/http'
+
 const moment = _rollupMoment || _moment
 export const MY_FORMATS = {
   parse: {
@@ -48,15 +51,17 @@ export class GameCrudComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {}
+  progress: number = 0
   method: string = ''
   create: boolean = false
   edit: boolean = false
+  isSubmiting: boolean = false
   date = new FormControl(moment())
   game: Game = {
     id: null,
-    name: '',
-    release_year: '',
-    description: '',
+    name: 'Teste',
+    release_year: '2020',
+    description: 'Descricao tal',
     images: [],
     gameType: []
   }
@@ -68,7 +73,7 @@ export class GameCrudComponent implements OnInit {
   })
   imagesAlreadyUploaded: any = []
   images: any = []
-  year = ''
+  year = '2020'
   images_to_upload: any
 
   chosenYearHandler ($event: any, input: any) {
@@ -80,7 +85,6 @@ export class GameCrudComponent implements OnInit {
   }
   onFileInput ($event: any) {
     this.game.images = $event.target.files
-
     this.images_to_upload = $event.target.files
     var images: any = []
     for (let i = 0; i < $event.target.files.length; i++) {
@@ -107,13 +111,23 @@ export class GameCrudComponent implements OnInit {
         formData.append('images[]', this.game.images[i])
       }
       if (this.create) {
-        this.gameCrudService.post(formData).subscribe(data => {
-          this.gameCrudService.snackBarMessage(
-            'Jogo Criado com sucesso',
-            'success'
-          )
-          this.resetForm()
-        })
+        this.isSubmiting = true
+        this.gameCrudService
+          .post(formData)
+          .subscribe((event: HttpEvent<Object>) => {
+            this.isSubmiting = true
+            if (event.type == HttpEventType.Response) {
+              this.gameCrudService.snackBarMessage(
+                'Jogo Criado com sucesso',
+                'success'
+              )
+            } else if (event.type == HttpEventType.UploadProgress) {
+              this.progress =  Math.round((event.loaded! * 100) /  event['total']!)
+
+            }
+
+            this.resetForm()
+          })
       } else {
         this.gameCrudService.patch(formData).subscribe(data => {
           this.gameCrudService.snackBarMessage(
