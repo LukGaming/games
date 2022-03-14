@@ -80,6 +80,7 @@ export class GameCrudComponent implements OnInit {
   }
   onFileInput ($event: any) {
     this.game.images = $event.target.files
+
     this.images_to_upload = $event.target.files
     var images: any = []
     for (let i = 0; i < $event.target.files.length; i++) {
@@ -102,14 +103,25 @@ export class GameCrudComponent implements OnInit {
       formData.append('name', this.game.name)
       formData.append('release_year', this.game.release_year)
       formData.append('description', this.game.description)
-      formData.append('images', this.game.images)
-      this.gameCrudService.submit(formData).subscribe(data => {
-        this.gameCrudService.snackBarMessage(
-          'Jogo Criado com sucesso',
-          'success'
-        )
-        this.resetForm()
-      })
+      for (let i = 0; i < this.game.images.length; i++) {
+        formData.append('images[]', this.game.images[i])
+      }
+      if (this.create) {
+        this.gameCrudService.post(formData).subscribe(data => {
+          this.gameCrudService.snackBarMessage(
+            'Jogo Criado com sucesso',
+            'success'
+          )
+          this.resetForm()
+        })
+      } else {
+        this.gameCrudService.patch(formData).subscribe(data => {
+          this.gameCrudService.snackBarMessage(
+            'Jogo Editado com sucesso',
+            'success'
+          )
+        })
+      }
     }
   }
   resetForm () {
@@ -126,14 +138,16 @@ export class GameCrudComponent implements OnInit {
       this.year = data.game.release_year
       this.game = { ...data.game }
       for (let i = 0; i < data.game.game_images.length; i++) {
-      data.game.game_images[i].caminho_imagem_game = `http://localhost:8000/${data.game.game_images[i].caminho_imagem_game}`
+        data.game.game_images[
+          i
+        ].caminho_imagem_game = `http://localhost:8000/${data.game.game_images[i].caminho_imagem_game}`
       }
       this.imagesAlreadyUploaded = [...data.game.game_images]
     })
   }
   removeImageAlreadyUploaded (id: any, index: any) {
     this.imagesAlreadyUploaded.splice(index, 1)
-    this.gameCrudService.removeImageAlreadyUploaded(id).subscribe(data=>{
+    this.gameCrudService.removeImageAlreadyUploaded(id).subscribe(data => {
       this.gameCrudService.snackBarMessage(
         'Imagem removida com sucesso',
         'success'
@@ -143,13 +157,13 @@ export class GameCrudComponent implements OnInit {
   ngOnInit (): void {
     if (this.router.url == '/games/create') {
       this.create = true
-      this.method = "Criar Game"
+      this.method = 'Criar Game'
     }
     if (this.router.url == `/games/${this.route.snapshot.params['id']}/edit`) {
       this.game.id = this.route.snapshot.params['id']
       this.edit = true
       this.editGame()
-      this.method = "Salvar Alterações"
+      this.method = 'Salvar Alterações'
     }
   }
 }

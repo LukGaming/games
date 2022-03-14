@@ -10,11 +10,13 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 export class GameCrudService {
   baseUrl = 'http://localhost:8000/api/games'
   constructor (private http: HttpClient, private snackbar: MatSnackBar) {}
-  submit (game: any): Observable<any> {
-    return this.http.post<any>(this.baseUrl, game)
+  post (game: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/create`, game)
+  }
+  patch (game: any): Observable<any> {
+    return this.http.patch<any>(this.baseUrl, game)
   }
   getById (id: any): Observable<any> {
-    console.log("Getting here")
     return this.http.get<any>(`${this.baseUrl}/${id}`)
   }
   snackBarMessage (msg: string = 'Teste', classMsg: string = 'success') {
@@ -23,7 +25,7 @@ export class GameCrudService {
       panelClass: classMsg
     })
   }
-  removeImageAlreadyUploaded(id: any): Observable<any>{
+  removeImageAlreadyUploaded (id: any): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/remove-image/${id}`)
   }
 }
