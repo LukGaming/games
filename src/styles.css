@@ -9,3 +9,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #03dac5;
     color: white;
 }
+.text-sucess{
+    color: #03dac5;
+}

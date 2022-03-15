@@ -1,15 +1,15 @@
-.container{
-    
+.container {
 }
 .game {
   max-width: 300px;
   min-width: 300px;
-  padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
+  position: relative;
   flex-direction: column;
   margin: 10px;
   background-color: #121212;
   color: white;
+  box-shadow: 0 3px 25px rgb(0 0 0 / 0.2);
 }
 .image-and-title {
   position: relative;
@@ -18,6 +18,8 @@
   display: flex;
 }
 .title-game {
+  justify-content: center;
+  text-align: center;
   position: absolute;
   font-size: 2rem;
   text-align: center;
@@ -26,33 +28,55 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .games {
+  
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-
+.game-name {
+  
+  margin: 10px;
+  text-align: center;
+}
+.description::before{
+  padding: 10px;
+}
 .description {
-  height: 100px;
-  max-height: 100px;
-  overflow: auto;
+  display: block;
+  display: -webkit-box;
+  max-width: 300px;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  margin-bottom: 50px;
 }
-.btn-game{
-    position: absolute;
-    right: 0;
+.btn-game {
+  width: 100% !important;
+  position: absolute;
+  bottom: 0;
+  border-radius: 0 0 10px 10px;
 }
-
 
 .description::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
+  width: 10px; /* width of the entire scrollbar */
 }
 
 .description::-webkit-scrollbar-track {
-  background: orange;  
-  border-radius: 5px;      /* color of the tracking area */
+  background: rgb(248, 226, 184);
+  border-radius: 5px;
+  /* color of the tracking area */
 }
 
 .description::-webkit-scrollbar-thumb {
-  background-color: blue;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid orange;  /* creates padding around scroll thumb */
+  background-color: blue; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid orange; /* creates padding around scroll thumb */
+}
+.btn-detalhes {
+  border: none;
+}
+.image-game{
+  border-radius: 10px 10px 0 0;
 }
