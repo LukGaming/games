@@ -16,11 +16,14 @@ import { FormsModule, ReactiveFormsModule}   from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DialogAlertComponent } from './components/dialogs/dialog-alert/dialog-alert.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { GamesComponent } from './views/game-crud/games/games.component'
 
  //.Material Modules
 
 @NgModule({
-  declarations: [AppComponent, GameCrudComponent],
+  declarations: [AppComponent, GameCrudComponent, DialogAlertComponent, GamesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,7 +38,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDatepickerModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
     //.Material Modules
   ],
   providers: [],

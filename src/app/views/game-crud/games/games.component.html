@@ -1,0 +1,19 @@
+<div class="games container">
+
+    <div *ngFor="let game of games; index as i;" class="game">
+        <div class="image-and-title">
+            <img [src]="'http://localhost:8000/' +game.game_images[0]['caminho_imagem_game']"
+                class="img-fluid image-game" alt="Responsive image">
+            <div class="title-game">
+                {{game.name}}
+            </div>
+            <div class="btn-game ">
+                <button class="btn btn-success">Ver mais detalhes</button>
+            </div>
+        </div>
+        <div>Nome do Jogo:</div>
+        <div class="game-name"> {{game.name}}</div>
+        <div>Descricao: </div>
+        <div class="description"> {{game.description}}</div>
+    </div>
+</div>

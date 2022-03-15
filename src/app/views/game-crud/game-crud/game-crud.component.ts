@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Game } from '../../game.model'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { GameCrudService } from 'src/app/services/game-crud.service'
+import { MatDialog } from '@angular/material/dialog'
 
 import {
   MomentDateAdapter,
@@ -19,6 +20,7 @@ import { default as _rollupMoment, Moment } from 'moment'
 import { Observer } from 'rxjs'
 import { ActivatedRoute, Router } from '@angular/router'
 import { HttpEvent, HttpEventType } from '@angular/common/http'
+import { DialogAlertComponent } from 'src/app/components/dialogs/dialog-alert/dialog-alert.component'
 
 const moment = _rollupMoment || _moment
 export const MY_FORMATS = {
@@ -47,6 +49,7 @@ export const MY_FORMATS = {
 })
 export class GameCrudComponent implements OnInit {
   constructor (
+    public dialog: MatDialog,
     private gameCrudService: GameCrudService,
     private router: Router,
     private route: ActivatedRoute
@@ -117,23 +120,32 @@ export class GameCrudComponent implements OnInit {
           .subscribe((event: HttpEvent<Object>) => {
             this.isSubmiting = true
             if (event.type == HttpEventType.Response) {
-              this.gameCrudService.snackBarMessage(
-                'Jogo Criado com sucesso',
-                'success'
-              )
+              // this.gameCrudService.snackBarMessage(
+              //   'Jogo Criado com sucesso',
+              //   'success'
+              // )
+              this.dialog.open(DialogAlertComponent, {
+                width: '500px',
+                data: {title: 'Sucesso!', message: 'Game criado com sucesso!'}
+              })
             } else if (event.type == HttpEventType.UploadProgress) {
-              this.progress =  Math.round((event.loaded! * 100) /  event['total']!)
-
+              this.progress = Math.round(
+                (event.loaded! * 100) / event['total']!
+              )
             }
 
             this.resetForm()
           })
       } else {
         this.gameCrudService.patch(formData).subscribe(data => {
-          this.gameCrudService.snackBarMessage(
-            'Jogo Editado com sucesso',
-            'success'
-          )
+          // this.gameCrudService.snackBarMessage(
+          //   'Jogo Editado com sucesso',
+          //   'success'
+          // )
+          this.dialog.open(DialogAlertComponent, {
+            width: '500px',
+            data: {title: 'Sucesso!', message: 'Game editado com sucesso!'}
+          })
         })
       }
     }

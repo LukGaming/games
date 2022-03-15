@@ -22,6 +22,9 @@ export class GameCrudService {
   getById (id: any): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${id}`)
   }
+  getAll(pagination: number){
+    return this.http.get<any>(`${this.baseUrl}/${pagination}/get`)
+  }
   snackBarMessage (msg: string = 'Teste', classMsg: string = 'success') {
     this.snackbar.open(msg, 'fechar', {
       duration: 3000,

@@ -1,0 +1,58 @@
+.container{
+    
+}
+.game {
+  max-width: 300px;
+  min-width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  flex-direction: column;
+  margin: 10px;
+  background-color: #121212;
+  color: white;
+}
+.image-and-title {
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+.title-game {
+  position: absolute;
+  font-size: 2rem;
+  text-align: center;
+  bottom: 0;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.games {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.description {
+  height: 100px;
+  max-height: 100px;
+  overflow: auto;
+}
+.btn-game{
+    position: absolute;
+    right: 0;
+}
+
+
+.description::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+.description::-webkit-scrollbar-track {
+  background: orange;  
+  border-radius: 5px;      /* color of the tracking area */
+}
+
+.description::-webkit-scrollbar-thumb {
+  background-color: blue;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid orange;  /* creates padding around scroll thumb */
+}

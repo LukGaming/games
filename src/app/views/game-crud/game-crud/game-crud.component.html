@@ -4,8 +4,12 @@
             <mat-label>Nome do Jogo</mat-label>
             <input matInput type="text" [(ngModel)]="game.name" formControlName="name" name="name">
         </mat-form-field>
-        <div class="error-message" *ngIf="!validateGame.get('name')?.valid && validateGame.get('name')?.touched">O nome
-            do jogo é obrigatório </div>
+        <div class="error-message" *ngIf="!validateGame.get('name')?.valid && validateGame.get('name')?.touched">
+            <div class="alert alert-danger" role="alert">
+                O nome
+                do jogo é obrigatório
+            </div>
+        </div>
         <mat-form-field class="input" appearance="fill">
             <mat-form-field appearance="outline">
                 <mat-label>Ano de lançamento</mat-label>
@@ -17,15 +21,21 @@
             </mat-form-field>
         </mat-form-field>
         <div class="error-message"
-            *ngIf="!validateGame.get('release_year')?.valid && validateGame.get('release_year')?.touched">A data
-            de lançamento é obrigatória </div>
+            *ngIf="!validateGame.get('release_year')?.valid && validateGame.get('release_year')?.touched">
+            <div class="alert alert-danger" role="alert">
+                A data de lançamento é obrigatória
+            </div>
+        </div>
         <mat-form-field class="input" appearance="fill">
             <mat-label>Descricao</mat-label>
             <input matInput [(ngModel)]="game.description" formControlName="description" name="description">
         </mat-form-field>
         <div class="error-message"
-            *ngIf="!validateGame.get('description')?.valid && validateGame.get('description')?.touched">A data
-            de lançamento é obrigatória </div>
+            *ngIf="!validateGame.get('description')?.valid && validateGame.get('description')?.touched">
+            <div class="alert alert-danger" role="alert">
+                A descrição é obrigatória
+            </div>
+        </div>
         <div class="images_game">
             <label for="images" class="images_games_label">
                 <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon> Selecionar Novas Imagens
@@ -59,8 +69,11 @@
                 </div>
             </div>
         </div>
-        <div class="error-message" *ngIf="!validateGame.get('images')?.valid && validateGame.get('images')?.touched">O
-            jogo deve conter ao menos uma imagem! </div>
+        <div class="error-message" *ngIf="!validateGame.get('images')?.valid && validateGame.get('images')?.touched">
+            <div class="alert alert-danger" role="alert">
+                jogo deve conter ao menos uma imagem!
+            </div>
+        </div>
     </div>
     <button [disabled]="validateGame.invalid" class="btn-submit" mat-raised-button color="primary"
         (click)="submit($event)">{{method}}</button>
@@ -69,4 +82,5 @@
         <div class="progress-bar" [style.width]="progress + '%'" role="progressbar" aria-valuenow="0" aria-valuemin="0"
             aria-valuemax="100">{{progress}}%</div>
     </div>
+    
 </form>
