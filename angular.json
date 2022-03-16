@@ -108,9 +108,21 @@
           "options": {
             "browserTarget": "games:build"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "games"
+  "defaultProject": "games",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

@@ -126,7 +126,7 @@ export class GameCrudComponent implements OnInit {
               // )
               this.dialog.open(DialogAlertComponent, {
                 width: '500px',
-                data: {title: 'Sucesso!', message: 'Game criado com sucesso!'}
+                data: { title: 'Sucesso!', message: 'Game criado com sucesso!' }
               })
             } else if (event.type == HttpEventType.UploadProgress) {
               this.progress = Math.round(
@@ -144,7 +144,7 @@ export class GameCrudComponent implements OnInit {
           // )
           this.dialog.open(DialogAlertComponent, {
             width: '500px',
-            data: {title: 'Sucesso!', message: 'Game editado com sucesso!'}
+            data: { title: 'Sucesso!', message: 'Game editado com sucesso!' }
           })
         })
       }

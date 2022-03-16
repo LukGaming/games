@@ -13,6 +13,7 @@ export class GamesComponent implements OnInit {
   ngOnInit(): void {
     this.gameCrudService.getAll(100).subscribe(games =>{
       this.games = games.data
+      console.log(this.games)
     })
   }
 
