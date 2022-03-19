@@ -1,0 +1,18 @@
+.game_name {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+.background-card {
+  padding: 40px;
+  background-color: #050505;
+}
+.img-fluid {
+  border: 2px solid #ffffff;
+}
+.description{
+    color: #ffffff;
+}

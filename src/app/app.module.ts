@@ -26,7 +26,8 @@ import { GamesComponent } from './views/game-crud/games/games.component'
 import { HeaderComponent } from './components/template/header/header.component'
 import { DialogAlertComponent } from './components/dialogs/dialog-alert/dialog-alert.component'
 import { GameCrudComponent } from './views/game-crud/game-crud/game-crud.component'
-import { AppComponent } from './app.component'
+import { AppComponent } from './app.component';
+import { GameDetailsComponent } from './views/game-details/game-details.component'
 //.Components//
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AppComponent } from './app.component'
     DialogAlertComponent,
     GamesComponent,
     HeaderComponent,
-    NavComponent
+    NavComponent,
+    GameDetailsComponent
   ],
   imports: [
     BrowserModule,

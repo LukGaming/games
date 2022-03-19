@@ -1,5 +1,4 @@
 <div class="games container">
-
     <div *ngFor="let game of games; index as i;" class="game">
         <div class="image-and-title">
             <img [src]="'http://localhost:8000/' +game.game_images[0]['caminho_imagem_game']"
@@ -7,7 +6,6 @@
             <div class="title-game">
                 {{game.name}}
             </div>
-
         </div>
         <!-- <div class="game-name"> {{game.name}}</div> -->
         <div class="description"> {{game.description}}</div>

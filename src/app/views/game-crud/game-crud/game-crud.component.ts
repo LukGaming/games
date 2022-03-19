@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { Game } from '../../game.model'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { GameCrudService } from 'src/app/services/game-crud.service'
-import { MatDialog } from '@angular/material/dialog'
-
 import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS
@@ -19,9 +17,6 @@ import * as _moment from 'moment'
 import { default as _rollupMoment, Moment } from 'moment'
 import { Observer } from 'rxjs'
 import { ActivatedRoute, Router } from '@angular/router'
-import { HttpEvent, HttpEventType } from '@angular/common/http'
-import { DialogAlertComponent } from 'src/app/components/dialogs/dialog-alert/dialog-alert.component'
-
 const moment = _rollupMoment || _moment
 export const MY_FORMATS = {
   parse: {
@@ -49,22 +44,19 @@ export const MY_FORMATS = {
 })
 export class GameCrudComponent implements OnInit {
   constructor (
-    public dialog: MatDialog,
     private gameCrudService: GameCrudService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
-  progress: number = 0
   method: string = ''
   create: boolean = false
   edit: boolean = false
-  isSubmiting: boolean = false
   date = new FormControl(moment())
   game: Game = {
     id: null,
     name: 'Teste',
-    release_year: '2020',
-    description: 'Descricao tal',
+    release_year: '2022',
+    description: 'Descricao teste',
     images: [],
     gameType: []
   }
@@ -75,8 +67,9 @@ export class GameCrudComponent implements OnInit {
     images: new FormControl(this.game.images, [Validators.required])
   })
   imagesAlreadyUploaded: any = []
+  videos: any = []
   images: any = []
-  year = '2020'
+  year = '2022'
   images_to_upload: any
 
   chosenYearHandler ($event: any, input: any) {
@@ -88,6 +81,7 @@ export class GameCrudComponent implements OnInit {
   }
   onFileInput ($event: any) {
     this.game.images = $event.target.files
+
     this.images_to_upload = $event.target.files
     var images: any = []
     for (let i = 0; i < $event.target.files.length; i++) {
@@ -98,6 +92,9 @@ export class GameCrudComponent implements OnInit {
       reader.readAsDataURL($event.target.files[i])
     }
     this.images = images
+  }
+  videosInput ($event: any) {
+    this.videos = $event.target.files
   }
   removeImage (index: any) {
     // this.game.images.splice(index, 1)
@@ -113,39 +110,23 @@ export class GameCrudComponent implements OnInit {
       for (let i = 0; i < this.game.images.length; i++) {
         formData.append('images[]', this.game.images[i])
       }
+      for (let i = 0; i < this.videos.length; i++) {
+        formData.append('videos[]', this.videos[i])
+      }
       if (this.create) {
-        this.isSubmiting = true
-        this.gameCrudService
-          .post(formData)
-          .subscribe((event: HttpEvent<Object>) => {
-            this.isSubmiting = true
-            if (event.type == HttpEventType.Response) {
-              // this.gameCrudService.snackBarMessage(
-              //   'Jogo Criado com sucesso',
-              //   'success'
-              // )
-              this.dialog.open(DialogAlertComponent, {
-                width: '500px',
-                data: { title: 'Sucesso!', message: 'Game criado com sucesso!' }
-              })
-            } else if (event.type == HttpEventType.UploadProgress) {
-              this.progress = Math.round(
-                (event.loaded! * 100) / event['total']!
-              )
-            }
-
-            this.resetForm()
-          })
+        this.gameCrudService.post(formData).subscribe(data => {
+          this.gameCrudService.snackBarMessage(
+            'Jogo Criado com sucesso',
+            'success'
+          )
+          this.resetForm()
+        })
       } else {
         this.gameCrudService.patch(formData).subscribe(data => {
-          // this.gameCrudService.snackBarMessage(
-          //   'Jogo Editado com sucesso',
-          //   'success'
-          // )
-          this.dialog.open(DialogAlertComponent, {
-            width: '500px',
-            data: { title: 'Sucesso!', message: 'Game editado com sucesso!' }
-          })
+          this.gameCrudService.snackBarMessage(
+            'Jogo Editado com sucesso',
+            'success'
+          )
         })
       }
     }
