@@ -30,7 +30,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatNativeDateModule } from '@angular/material/core'
+import { MatNativeDateModule } from '@angular/material/core';
+import { ButtonComponent } from './stories/button/button.component';
+import { EllipsisComponent } from './stories/ellipsis/ellipsis.component';
+
 
 //Angular Material Modules
 
@@ -43,6 +46,8 @@ import { MatNativeDateModule } from '@angular/material/core'
     NavComponent,
     GameCrudComponent,
     GameDetailsComponent,
+    ButtonComponent,
+    EllipsisComponent,
   ],
   imports: [
     BrowserModule,

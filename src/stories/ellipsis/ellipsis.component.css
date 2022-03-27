@@ -1,0 +1,27 @@
+
+div{
+    border: 2px solid green;
+    width: 200px;
+}
+.ellipsis {
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.one-line {
+    -webkit-line-clamp: 1;
+}
+.two-lines {
+    -webkit-line-clamp: 2;
+}
+.three-lines {
+    -webkit-line-clamp: 3;
+}
+.four-lines {
+    -webkit-line-clamp: 4;
+}
+.five-lines {
+    -webkit-line-clamp: 5;
+}
+
