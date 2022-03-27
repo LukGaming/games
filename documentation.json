@@ -4,7 +4,7 @@
         {
             "name": "Game",
             "id": "interface-Game-19d169087820039bc572a8573ed7938bc3f7007b68526f56d0ea65b409610e5f6e9e865a3f057c69a16b51456c38310aeb7313a632c23437dc33fc3a1852babc",
-            "file": "src/app/views/game.model.ts",
+            "file": "src/app/views/games/game.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
@@ -85,7 +85,7 @@
     "injectables": [
         {
             "name": "GameCrudService",
-            "id": "injectable-GameCrudService-f669b03ae044df39378f944d48cb6879df62ec988d78140aef568d7e0cdf9adc30b65184da046698346d2df912c555b99796c46186d5f1f6851ed530475fefae",
+            "id": "injectable-GameCrudService-f6e1e836f98a2eb6532b2bf2592553d14b0eba0cafb7dd12f9dbe32fa28feb8706b73ed60ad0a985bdd5833b2602f406bfdf359225204bc0ed3ddc4db8421582",
             "file": "src/app/services/game-crud.service.ts",
             "properties": [
                 {
@@ -292,7 +292,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core'\nimport { HttpClient } from '@angular/common/http'\nimport { Game } from '../views/game.model'\nimport { Observable } from 'rxjs'\nimport { MatSnackBar } from '@angular/material/snack-bar'\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class GameCrudService {\n  baseUrl = 'http://localhost:8000/api/games'\n  constructor (private http: HttpClient, private snackbar: MatSnackBar) {}\n  post (game: any): Observable<any> {\n    return this.http.post<any>(`${this.baseUrl}/create`, game, {\n      observe: 'events',\n      reportProgress: true\n    })\n  }\n  patch (game: any): Observable<any> {\n    return this.http.patch<any>(this.baseUrl, game)\n  }\n  getById (id: any): Observable<any> {\n    return this.http.get<any>(`${this.baseUrl}/${id}`)\n  }\n  getAll(pagination: number){\n    return this.http.get<any>(`${this.baseUrl}/${pagination}/get`)\n  }\n  snackBarMessage (msg: string = 'Teste', classMsg: string = 'success') {\n    this.snackbar.open(msg, 'fechar', {\n      duration: 3000,\n      panelClass: classMsg\n    })\n  }\n  removeImageAlreadyUploaded (id: any): Observable<any> {\n    return this.http.delete<any>(`${this.baseUrl}/remove-image/${id}`)\n  }\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core'\nimport { HttpClient } from '@angular/common/http'\nimport { Game } from '../views/games/game.model'\nimport { Observable } from 'rxjs'\nimport { MatSnackBar } from '@angular/material/snack-bar'\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class GameCrudService {\n  baseUrl = 'http://localhost:8000/api/games'\n  constructor (private http: HttpClient, private snackbar: MatSnackBar) {}\n  post (game: any): Observable<any> {\n    return this.http.post<any>(`${this.baseUrl}/create`, game, {\n      observe: 'events',\n      reportProgress: true\n    })\n  }\n  patch (game: any): Observable<any> {\n    return this.http.patch<any>(this.baseUrl, game)\n  }\n  getById (id: any): Observable<any> {\n    return this.http.get<any>(`${this.baseUrl}/${id}`)\n  }\n  getAll(pagination: number){\n    return this.http.get<any>(`${this.baseUrl}/${pagination}/get`)\n  }\n  snackBarMessage (msg: string = 'Teste', classMsg: string = 'success') {\n    this.snackbar.open(msg, 'fechar', {\n      duration: 3000,\n      panelClass: classMsg\n    })\n  }\n  removeImageAlreadyUploaded (id: any): Observable<any> {\n    return this.http.delete<any>(`${this.baseUrl}/remove-image/${id}`)\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -344,7 +344,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-09d7ee284314cb47922c66b58980dab933d32f06f95909f9f62f4e19ea450dde985c11184a1f78f9e7b7888f05f2c17925a89c82f8dc7e00ddca26a15f98f1d3",
+            "id": "component-AppComponent-bb86dcceb98c8ff8b726000354ea4f0fcc1203eea181e6e59cb5c37ec1d448029e2cf47f72bb036702eafc01d07f5638afc3536ec50783a5ed691aff36831c4c",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -362,18 +362,7 @@
             "viewProviders": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "title",
-                    "defaultValue": "'games'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 9
-                }
-            ],
+            "propertiesClass": [],
             "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
@@ -382,7 +371,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent {\n  title = 'games';\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent {\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -655,8 +644,8 @@
         },
         {
             "name": "GameCrudComponent",
-            "id": "component-GameCrudComponent-20868c1051238c1fe032efe5fd88e00716effc1382ff376d760282a674efa84d0ba04bdc80eaf9d51319af436799c32aaba194ea357570ef91dd81b9304c4bba",
-            "file": "src/app/views/game-crud/game-crud/game-crud.component.ts",
+            "id": "component-GameCrudComponent-1e78b12245eddcf6d6ed50cd26c239c729fd503e80b4527cfd9873b9ce16b91d61b533f258f05a20afd09cbefd68fec1cc3fa379b9d6b264dfc29f37ace9ddc8",
+            "file": "src/app/views/games/game-crud/game-crud.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -689,7 +678,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 52
+                    "line": 55
                 },
                 {
                     "name": "date",
@@ -699,7 +688,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 54
+                    "line": 57
                 },
                 {
                     "name": "edit",
@@ -709,7 +698,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 53
+                    "line": 56
                 },
                 {
                     "name": "game",
@@ -719,7 +708,7 @@
                     "type": "Game",
                     "optional": false,
                     "description": "",
-                    "line": 55
+                    "line": 58
                 },
                 {
                     "name": "images",
@@ -729,7 +718,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 71
+                    "line": 74
                 },
                 {
                     "name": "images_to_upload",
@@ -738,7 +727,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 73
+                    "line": 76
                 },
                 {
                     "name": "imagesAlreadyUploaded",
@@ -748,7 +737,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 69
+                    "line": 72
                 },
                 {
                     "name": "method",
@@ -758,7 +747,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 51
+                    "line": 54
                 },
                 {
                     "name": "validateGame",
@@ -768,7 +757,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 63
+                    "line": 66
                 },
                 {
                     "name": "videos",
@@ -778,7 +767,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 70
+                    "line": 73
                 },
                 {
                     "name": "year",
@@ -788,7 +777,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 72
+                    "line": 75
                 }
             ],
             "methodsClass": [
@@ -811,7 +800,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 75,
+                    "line": 78,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -841,7 +830,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 143,
+                    "line": 146,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -851,7 +840,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 164,
+                    "line": 167,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -868,7 +857,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 82,
+                    "line": 85,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -896,7 +885,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 99,
+                    "line": 102,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -930,7 +919,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 155,
+                    "line": 158,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -960,7 +949,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 134,
+                    "line": 137,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -977,7 +966,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 103,
+                    "line": 106,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1005,7 +994,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 96,
+                    "line": 99,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1028,7 +1017,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core'\nimport { Game } from '../../game.model'\nimport { FormControl, FormGroup, Validators } from '@angular/forms'\nimport { GameCrudService } from 'src/app/services/game-crud.service'\nimport {\n  MomentDateAdapter,\n  MAT_MOMENT_DATE_ADAPTER_OPTIONS\n} from '@angular/material-moment-adapter'\nimport {\n  DateAdapter,\n  MAT_DATE_FORMATS,\n  MAT_DATE_LOCALE\n} from '@angular/material/core'\nimport { MatDatepicker } from '@angular/material/datepicker'\nimport * as _moment from 'moment'\n// tslint:disable-next-line:no-duplicate-imports\nimport { default as _rollupMoment, Moment } from 'moment'\nimport { Observer } from 'rxjs'\nimport { ActivatedRoute, Router } from '@angular/router'\nconst moment = _rollupMoment || _moment\nexport const MY_FORMATS = {\n  parse: {\n    dateInput: 'YYYY'\n  },\n  display: {\n    dateInput: 'YYYY',\n    monthYearLabel: 'YYYY',\n    monthYearA11yLabel: 'YYYY'\n  }\n}\n@Component({\n  selector: 'app-game-crud',\n  templateUrl: './game-crud.component.html',\n  styleUrls: ['./game-crud.component.css'],\n  providers: [\n    {\n      provide: DateAdapter,\n      useClass: MomentDateAdapter,\n      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]\n    },\n\n    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }\n  ]\n})\nexport class GameCrudComponent implements OnInit {\n  constructor (\n    private gameCrudService: GameCrudService,\n    private router: Router,\n    private route: ActivatedRoute\n  ) {}\n  method: string = ''\n  create: boolean = false\n  edit: boolean = false\n  date = new FormControl(moment())\n  game: Game = {\n    id: null,\n    name: 'Teste',\n    release_year: '2022',\n    description: 'Descricao teste',\n    images: [],\n    gameType: []\n  }\n  validateGame = new FormGroup({\n    name: new FormControl(this.game.name, Validators.required),\n    release_year: new FormControl(this.game.release_year, Validators.required),\n    description: new FormControl(this.game.description, Validators.required),\n    images: new FormControl(this.game.images, [Validators.required])\n  })\n  imagesAlreadyUploaded: any = []\n  videos: any = []\n  images: any = []\n  year = '2022'\n  images_to_upload: any\n\n  chosenYearHandler ($event: any, input: any) {\n    let { _d } = $event\n    this.year = _d\n    input.opened = false\n    this.game.release_year = $event._i.year\n    console.log(this.game)\n  }\n  onFileInput ($event: any) {\n    this.game.images = $event.target.files\n\n    this.images_to_upload = $event.target.files\n    var images: any = []\n    for (let i = 0; i < $event.target.files.length; i++) {\n      let reader = new FileReader()\n      reader.onloadend = function () {\n        images.push(reader.result)\n      }\n      reader.readAsDataURL($event.target.files[i])\n    }\n    this.images = images\n  }\n  videosInput ($event: any) {\n    this.videos = $event.target.files\n  }\n  removeImage (index: any) {\n    // this.game.images.splice(index, 1)\n    this.images.splice(index, 1)\n  }\n  submit ($event: any) {\n    $event.preventDefault()\n    if (this.validateGame.valid) {\n      var formData = new FormData()\n      formData.append('name', this.game.name)\n      formData.append('release_year', this.game.release_year)\n      formData.append('description', this.game.description)\n      for (let i = 0; i < this.game.images.length; i++) {\n        formData.append('images[]', this.game.images[i])\n      }\n      for (let i = 0; i < this.videos.length; i++) {\n        formData.append('videos[]', this.videos[i])\n      }\n      if (this.create) {\n        this.gameCrudService.post(formData).subscribe(data => {\n          this.gameCrudService.snackBarMessage(\n            'Jogo Criado com sucesso',\n            'success'\n          )\n          this.resetForm()\n        })\n      } else {\n        this.gameCrudService.patch(formData).subscribe(data => {\n          this.gameCrudService.snackBarMessage(\n            'Jogo Editado com sucesso',\n            'success'\n          )\n        })\n      }\n    }\n  }\n  resetForm () {\n    this.game.images = []\n    this.game.name = ''\n    this.game.release_year = ''\n    this.game.description = ''\n    this.images = []\n    this.images_to_upload = []\n    this.validateGame.reset()\n  }\n  editGame () {\n    this.gameCrudService.getById(this.game.id).subscribe(data => {\n      this.year = data.game.release_year\n      this.game = { ...data.game }\n      for (let i = 0; i < data.game.game_images.length; i++) {\n        data.game.game_images[\n          i\n        ].caminho_imagem_game = `http://localhost:8000/${data.game.game_images[i].caminho_imagem_game}`\n      }\n      this.imagesAlreadyUploaded = [...data.game.game_images]\n    })\n  }\n  removeImageAlreadyUploaded (id: any, index: any) {\n    this.imagesAlreadyUploaded.splice(index, 1)\n    this.gameCrudService.removeImageAlreadyUploaded(id).subscribe(data => {\n      this.gameCrudService.snackBarMessage(\n        'Imagem removida com sucesso',\n        'success'\n      )\n    })\n  }\n  ngOnInit (): void {\n    if (this.router.url == '/games/create') {\n      this.create = true\n      this.method = 'Criar Game'\n    }\n    if (this.router.url == `/games/${this.route.snapshot.params['id']}/edit`) {\n      this.game.id = this.route.snapshot.params['id']\n      this.edit = true\n      this.editGame()\n      this.method = 'Salvar Alterações'\n    }\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core'\nimport { Game } from '../game.model'\nimport { FormControl, FormGroup, Validators } from '@angular/forms'\nimport { GameCrudService } from 'src/app/services/game-crud.service'\n\nimport {\n  MomentDateAdapter,\n  MAT_MOMENT_DATE_ADAPTER_OPTIONS\n} from '@angular/material-moment-adapter'\nimport {\n  DateAdapter,\n  MAT_DATE_FORMATS,\n  MAT_DATE_LOCALE\n} from '@angular/material/core'\nimport { MatDatepicker } from '@angular/material/datepicker'\nimport * as _moment from 'moment'\n// tslint:disable-next-line:no-duplicate-imports\nimport { default as _rollupMoment, Moment } from 'moment'\nimport { Observer } from 'rxjs'\nimport { ActivatedRoute, Router } from '@angular/router'\n\nconst moment = _rollupMoment || _moment\nexport const MY_FORMATS = {\n  parse: {\n    dateInput: 'YYYY'\n  },\n  display: {\n    dateInput: 'YYYY',\n    monthYearLabel: 'YYYY',\n    monthYearA11yLabel: 'YYYY'\n  }\n}\n@Component({\n  selector: 'app-game-crud',\n  templateUrl: './game-crud.component.html',\n  styleUrls: ['./game-crud.component.css'],\n  providers: [\n    {\n      provide: DateAdapter,\n      useClass: MomentDateAdapter,\n      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]\n    },\n\n    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }\n  ]\n})\n\nexport class GameCrudComponent implements OnInit {\n  constructor (\n    private gameCrudService: GameCrudService,\n    private router: Router,\n    private route: ActivatedRoute\n  ) {}\n  method: string = ''\n  create: boolean = false\n  edit: boolean = false\n  date = new FormControl(moment())\n  game: Game = {\n    id: null,\n    name: 'Teste',\n    release_year: '2022',\n    description: 'Descricao teste',\n    images: [],\n    gameType: []\n  }\n  validateGame = new FormGroup({\n    name: new FormControl(this.game.name, Validators.required),\n    release_year: new FormControl(this.game.release_year, Validators.required),\n    description: new FormControl(this.game.description, Validators.required),\n    images: new FormControl(this.game.images, [Validators.required])\n  })\n  imagesAlreadyUploaded: any = []\n  videos: any = []\n  images: any = []\n  year = '2022'\n  images_to_upload: any\n\n  chosenYearHandler ($event: any, input: any) {\n    let { _d } = $event\n    this.year = _d\n    input.opened = false\n    this.game.release_year = $event._i.year\n    console.log(this.game)\n  }\n  onFileInput ($event: any) {\n    this.game.images = $event.target.files\n\n    this.images_to_upload = $event.target.files\n    var images: any = []\n    for (let i = 0; i < $event.target.files.length; i++) {\n      let reader = new FileReader()\n      reader.onloadend = function () {\n        images.push(reader.result)\n      }\n      reader.readAsDataURL($event.target.files[i])\n    }\n    this.images = images\n  }\n  videosInput ($event: any) {\n    this.videos = $event.target.files\n  }\n  removeImage (index: any) {\n    // this.game.images.splice(index, 1)\n    this.images.splice(index, 1)\n  }\n  submit ($event: any) {\n    $event.preventDefault()\n    if (this.validateGame.valid) {\n      var formData = new FormData()\n      formData.append('name', this.game.name)\n      formData.append('release_year', this.game.release_year)\n      formData.append('description', this.game.description)\n      for (let i = 0; i < this.game.images.length; i++) {\n        formData.append('images[]', this.game.images[i])\n      }\n      for (let i = 0; i < this.videos.length; i++) {\n        formData.append('videos[]', this.videos[i])\n      }\n      if (this.create) {\n        this.gameCrudService.post(formData).subscribe(data => {\n          this.gameCrudService.snackBarMessage(\n            'Jogo Criado com sucesso',\n            'success'\n          )\n          this.resetForm()\n        })\n      } else {\n        this.gameCrudService.patch(formData).subscribe(data => {\n          this.gameCrudService.snackBarMessage(\n            'Jogo Editado com sucesso',\n            'success'\n          )\n        })\n      }\n    }\n  }\n  resetForm () {\n    this.game.images = []\n    this.game.name = ''\n    this.game.release_year = ''\n    this.game.description = ''\n    this.images = []\n    this.images_to_upload = []\n    this.validateGame.reset()\n  }\n  editGame () {\n    this.gameCrudService.getById(this.game.id).subscribe(data => {\n      this.year = data.game.release_year\n      this.game = { ...data.game }\n      for (let i = 0; i < data.game.game_images.length; i++) {\n        data.game.game_images[\n          i\n        ].caminho_imagem_game = `http://localhost:8000/${data.game.game_images[i].caminho_imagem_game}`\n      }\n      this.imagesAlreadyUploaded = [...data.game.game_images]\n    })\n  }\n  removeImageAlreadyUploaded (id: any, index: any) {\n    this.imagesAlreadyUploaded.splice(index, 1)\n    this.gameCrudService.removeImageAlreadyUploaded(id).subscribe(data => {\n      this.gameCrudService.snackBarMessage(\n        'Imagem removida com sucesso',\n        'success'\n      )\n    })\n  }\n  ngOnInit (): void {\n    if (this.router.url == '/games/create') {\n      this.create = true\n      this.method = 'Criar Game'\n    }\n    if (this.router.url == `/games/${this.route.snapshot.params['id']}/edit`) {\n      this.game.id = this.route.snapshot.params['id']\n      this.edit = true\n      this.editGame()\n      this.method = 'Salvar Alterações'\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1062,7 +1051,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 45,
+                "line": 48,
                 "jsdoctags": [
                     {
                         "name": "gameCrudService",
@@ -1096,12 +1085,12 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<form enctype=\"multipart/form-data\" [formGroup]=\"validateGame\">\n    <div class=\"inputs-form \">\n        <mat-form-field class=\"input\" appearance=\"fill\">\n            <mat-label>Nome do Jogo</mat-label>\n            <input matInput type=\"text\" [(ngModel)]=\"game.name\" formControlName=\"name\" name=\"name\">\n        </mat-form-field>\n        <div class=\"error-message\" *ngIf=\"!validateGame.get('name')?.valid && validateGame.get('name')?.touched\">O nome\n            do jogo é obrigatório </div>\n        <mat-form-field class=\"input\" appearance=\"fill\">\n            <mat-form-field appearance=\"outline\">\n                <mat-label>Ano de lançamento</mat-label>\n                <input [(ngModel)]=\"year\" [formControl]=\"date\" formControlName=\"release_year\" matInput\n                    [matDatepicker]=\"picker\" />\n                <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                <mat-datepicker #picker startView=\"multi-year\" (yearSelected)=\"chosenYearHandler($event, picker)\">\n                </mat-datepicker>\n            </mat-form-field>\n        </mat-form-field>\n        <div class=\"error-message\"\n            *ngIf=\"!validateGame.get('release_year')?.valid && validateGame.get('release_year')?.touched\">A data\n            de lançamento é obrigatória </div>\n        <mat-form-field class=\"input\" appearance=\"fill\">\n            <mat-label>Descricao</mat-label>\n            <input matInput [(ngModel)]=\"game.description\" formControlName=\"description\" name=\"description\">\n        </mat-form-field>\n        <div class=\"error-message\"\n            *ngIf=\"!validateGame.get('description')?.valid && validateGame.get('description')?.touched\">A data\n            de lançamento é obrigatória </div>\n        <div class=\"images_game\">\n            <label for=\"images\" class=\"images_games_label\">\n                <mat-icon aria-hidden=\"false\" aria-label=\"Example home icon\">image</mat-icon> Selecionar Novas Imagens\n            </label>\n        </div>\n        <input #fileInput type=\"file\" formControlName=\"images\" id=\"images\" (change)=\"onFileInput($event)\" multiple\n            style=\"display: none;\" />\n            <div class=\"imagens-enviadas-text\">\n                <div *ngIf=\"images.length > 0\">Novas Imagens</div>\n            </div>\n        <div class=\"imagens-preview\">\n            <div class=\"images\" *ngFor=\"let image of images; index as i\" class=\"container-image\">\n                <img mat-card-md-image src={{image}} class=\"image-preview\">\n                <div class=\"delete_icon\">\n                    <mat-icon color=\"warn\" (click)=\"removeImage(i)\">delete</mat-icon>\n                </div>\n            </div>\n        </div>\n        <hr>\n          <!-- Enviar Vídeos -->\n        <div class=\"images_game\">\n            <label for=\"videos\" class=\"images_games_label\">\n                <mat-icon aria-hidden=\"false\" aria-label=\"Example home icon\">movie</mat-icon> Enviar Videos\n            </label>\n            <div *ngIf=\"videos.length > 0\">{{ videos.length }} videos</div>\n        </div>\n\n           \n\n        <input type=\"file\" id=\"videos\" (change)=\"videosInput($event)\" multiple style=\"display: none;\" />\n        <!--Imagens já enviadas -->\n        <div class=\"imagens-enviadas-text\">\n            <div *ngIf=\"imagesAlreadyUploaded\">Imagens já enviadas</div>\n        </div>\n\n        <div class=\"imagens-preview\">\n\n        <div class=\"images\" *ngFor=\"let image of imagesAlreadyUploaded; index as i\" class=\"container-image\">\n            <img mat-card-md-image src={{image.caminho_imagem_game}} class=\"image-preview\">\n            <div class=\"delete_icon\">\n                <mat-icon color=\"warn\" (click)=\"removeImageAlreadyUploaded(image.id, i)\">delete</mat-icon>\n            </div>\n        </div>\n    </div>\n\n\n\n    <div class=\"error-message\" *ngIf=\"!validateGame.get('images')?.valid && validateGame.get('images')?.touched\">O\n        jogo deve conter ao menos uma imagem! </div>\n    </div>\n    <button [disabled]=\"validateGame.invalid\" class=\"btn-submit\" mat-raised-button color=\"primary\"\n        (click)=\"submit($event)\">{{method}}</button>\n</form>"
+            "templateData": "<div [formGroup]=\"validateGame\">\n\n    <div class=\"inputs-form \">\n        <mat-form-field class=\"input\" appearance=\"fill\">\n            <mat-label>Nome do Jogo</mat-label>\n            <input matInput type=\"text\" [(ngModel)]=\"game.name\" formControlName=\"name\" name=\"name\">\n        </mat-form-field>\n        <div class=\"error-message\" *ngIf=\"!validateGame.get('name')?.valid && validateGame.get('name')?.touched\">O\n            nome\n            do jogo é obrigatório </div>\n        <mat-form-field class=\"input\" appearance=\"fill\">\n            \n                <mat-label>Ano de lançamento</mat-label>\n                <input [(ngModel)]=\"year\" [formControl]=\"date\" formControlName=\"release_year\" matInput\n                    [matDatepicker]=\"picker\" />\n                <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                <mat-datepicker #picker startView=\"multi-year\" (yearSelected)=\"chosenYearHandler($event, picker)\">\n                </mat-datepicker>\n            \n        </mat-form-field>\n        <div class=\"error-message\"\n            *ngIf=\"!validateGame.get('release_year')?.valid && validateGame.get('release_year')?.touched\">A data\n            de lançamento é obrigatória </div>\n        <mat-form-field class=\"input\" appearance=\"fill\">\n            <mat-label>Descricao</mat-label>\n            <input matInput [(ngModel)]=\"game.description\" formControlName=\"description\" name=\"description\">\n        </mat-form-field>\n        <div class=\"error-message\"\n            *ngIf=\"!validateGame.get('description')?.valid && validateGame.get('description')?.touched\">A data\n            de lançamento é obrigatória </div>\n        <div class=\"images_game\">\n            <label for=\"images\" class=\"images_games_label\">\n                <mat-icon aria-hidden=\"false\" aria-label=\"Example home icon\">image</mat-icon> Selecionar Novas\n                Imagens\n            </label>\n        </div>\n        <input #fileInput   type=\"file\" formControlName=\"images\" id=\"images\" (change)=\"onFileInput($event)\" multiple\n            style=\"display: none;\" />\n        <div class=\"imagens-enviadas-text\">\n            <div *ngIf=\"images.length > 0\">Novas Imagens</div>\n        </div>\n        <div class=\"imagens-preview\">\n            <div class=\"images\" *ngFor=\"let image of images; index as i\" class=\"container-image\">\n                <img mat-card-md-image src={{image}} class=\"image-preview\">\n                <div class=\"delete_icon\">\n                    <mat-icon color=\"warn\" (click)=\"removeImage(i)\">delete</mat-icon>\n                </div>\n            </div>\n        </div>\n        <hr>\n        <!-- Enviar Vídeos -->\n        <div class=\"images_game\">\n            <label for=\"videos\" class=\"images_games_label\">\n                <mat-icon aria-hidden=\"false\" aria-label=\"Example home icon\">movie</mat-icon> Enviar Videos\n            </label>\n            <div *ngIf=\"videos.length > 0\">{{ videos.length }} videos</div>\n        </div>\n\n\n\n        <input type=\"file\" id=\"videos\" (change)=\"videosInput($event)\" multiple style=\"display: none;\" />\n        <!--Imagens já enviadas -->\n        <div class=\"imagens-enviadas-text\">\n            <div *ngIf=\"imagesAlreadyUploaded\">Imagens já enviadas</div>\n        </div>\n\n        <div class=\"imagens-preview\">\n\n            <div class=\"images\" *ngFor=\"let image of imagesAlreadyUploaded; index as i\" class=\"container-image\">\n                <img mat-card-md-image src={{image.caminho_imagem_game}} class=\"image-preview\">\n                <div class=\"delete_icon\">\n                    <mat-icon color=\"warn\" (click)=\"removeImageAlreadyUploaded(image.id, i)\">delete</mat-icon>\n                </div>\n            </div>\n        </div>\n\n\n\n        <div class=\"error-message\" *ngIf=\"!validateGame.get('images')?.valid && validateGame.get('images')?.touched\">O\n            jogo deve conter ao menos uma imagem! </div>\n    </div>\n    <button [disabled]=\"validateGame.invalid\" class=\"btn-submit\" mat-raised-button color=\"primary\"\n        (click)=\"submit($event)\">{{method}}</button>\n</div>"
         },
         {
             "name": "GameDetailsComponent",
-            "id": "component-GameDetailsComponent-bb32089f35d7c563545362ee34f1f21181e45047a8991acbd8dccf7e1e15624b2850ffb9eb17be0d4888a0a2dc918be3debb10dc60c775199db6a9a91fbdc3c5",
-            "file": "src/app/views/game-details/game-details.component.ts",
+            "id": "component-GameDetailsComponent-f2df4b447d38b2d5a20403cc6750c0b1f9628d81b1c0c43c1f64c63ab4734bff789fc98f42a21d26c00c91c267e4c9138e7e6e0e577d54586dbca0a29cee042b",
+            "file": "src/app/views/games/game-details/game-details.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1155,7 +1144,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 21,
+                    "line": 19,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1167,7 +1156,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core'\nimport { ActivatedRoute } from '@angular/router'\nimport { GameCrudService } from 'src/app/services/game-crud.service'\nimport { Game } from '../game.model'\n\n@Component({\n  selector: 'app-game-details',\n  templateUrl: './game-details.component.html',\n  styleUrls: ['./game-details.component.css'],\n})\nexport class GameDetailsComponent implements OnInit {\n  id?: number\n  game: any\n  images: any =  []\n  constructor (\n    private route: ActivatedRoute,\n    private gameService: GameCrudService,\n  ) {\n  }\n\n  ngOnInit (): void {\n    this.id = this.route.snapshot.params['id']\n    this.gameService.getById(this.id).subscribe(\n      res => {\n        this.game = res.game\n        console.log(this.game)\n      },\n      error => {\n        console.log(error)\n      }\n    )\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core'\nimport { ActivatedRoute } from '@angular/router'\nimport { GameCrudService } from 'src/app/services/game-crud.service'\nimport { Game } from '../game.model'\n\n@Component({\n  selector: 'app-game-details',\n  templateUrl: './game-details.component.html',\n  styleUrls: ['./game-details.component.css']\n})\nexport class GameDetailsComponent implements OnInit {\n  id?: number\n  game: any\n  images: any = []\n  constructor (\n    private route: ActivatedRoute,\n    private gameService: GameCrudService\n  ) {}\n  ngOnInit (): void {\n    this.id = this.route.snapshot.params['id']\n    this.gameService.getById(this.id).subscribe(\n      res => {\n        this.game = res.game\n        console.log(this.game)\n      },\n      error => {\n        console.log(error)\n      }\n    )\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1225,7 +1214,7 @@
         {
             "name": "GamesComponent",
             "id": "component-GamesComponent-386b0d1a6d43238153698b9e31a80d7c5611188d8a5c3e99b87463eae45d145ec63c5358599c84c7f20772e3bf5e7e0cb13950cfdad23bb4173f010aeed32514",
-            "file": "src/app/views/game-crud/games/games.component.ts",
+            "file": "src/app/views/games/games/games.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1596,13 +1585,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-da4623eb98f72f8480eb711c9e536c379317c0eaff28f023e99330d4dacd3112afc608dfadad898b4bdd8a62c241085c2f8b777583a049f5a3f3164ba69c8602",
+            "id": "module-AppModule-0cd5f330ece9e9bc1f19c5cbbedc365316719ef91bfdedd1831309801055812e3805609a8189ba199f58ee161a4f5ec56425f5f64f0f5fc452ad5b2929493d43",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core'\nimport { BrowserModule } from '@angular/platform-browser'\n\nimport { AppRoutingModule } from './app-routing.module'\n\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations'\nimport { HttpClientModule } from '@angular/common/http'\n\n//Material Modules\nimport { MatSelectModule } from '@angular/material/select'\nimport { MatInputModule } from '@angular/material/input'\nimport { MatFormFieldModule } from '@angular/material/form-field'\nimport { MatDatepickerModule } from '@angular/material/datepicker'\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms'\nimport { MatIconModule } from '@angular/material/icon'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatSnackBarModule } from '@angular/material/snack-bar'\nimport { MatDialogModule } from '@angular/material/dialog'\nimport {MatSidenavModule} from '@angular/material/sidenav';\nimport { MatToolbarModule } from '@angular/material/toolbar'\n\n//.Material Modules\n//Components//\nimport { NavComponent } from './components/template/nav/nav.component'\nimport { GamesComponent } from './views/game-crud/games/games.component'\nimport { HeaderComponent } from './components/template/header/header.component'\nimport { DialogAlertComponent } from './components/dialogs/dialog-alert/dialog-alert.component'\nimport { GameCrudComponent } from './views/game-crud/game-crud/game-crud.component'\nimport { AppComponent } from './app.component';\nimport { GameDetailsComponent } from './views/game-details/game-details.component'\n//.Components//\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    GameCrudComponent,\n    DialogAlertComponent,\n    GamesComponent,\n    HeaderComponent,\n    NavComponent,\n    GameDetailsComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule,\n    HttpClientModule,\n    //.Material Modules\n    MatSidenavModule,\n    MatFormFieldModule,\n    MatSnackBarModule,\n    MatSelectModule,\n    MatInputModule,\n    FormsModule,\n    MatDatepickerModule,\n    ReactiveFormsModule,\n    MatIconModule,\n    MatButtonModule,\n    MatDialogModule,\n    MatToolbarModule\n\n    //.Material Modules\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core'\nimport { BrowserModule } from '@angular/platform-browser'\nimport { AppRoutingModule } from './app-routing.module'\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations'\nimport { HttpClientModule } from '@angular/common/http'\n\n\n//Components//\n\nimport { NavComponent } from './components/template/nav/nav.component'\nimport { HeaderComponent } from './components/template/header/header.component'\nimport { DialogAlertComponent } from './components/dialogs/dialog-alert/dialog-alert.component'\nimport { AppComponent } from './app.component'\nimport { GameCrudService } from './services/game-crud.service'\nimport { GameCrudComponent } from './views/games/game-crud/game-crud.component'\nimport { GameDetailsComponent } from './views/games/game-details/game-details.component'\nimport { GamesComponent } from './views/games/games/games.component'\n//.Components//\n//Angular Material Modules\nimport { FormsModule } from '@angular/forms'\n\nimport {  ReactiveFormsModule } from '@angular/forms'\nimport { MatSelectModule } from '@angular/material/select'\nimport { MatInputModule } from '@angular/material/input'\nimport { MatFormFieldModule } from '@angular/material/form-field'\nimport { MatDatepickerModule } from '@angular/material/datepicker'\nimport { MatIconModule } from '@angular/material/icon'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatSnackBarModule } from '@angular/material/snack-bar'\nimport { MatDialogModule } from '@angular/material/dialog'\nimport { MatSidenavModule } from '@angular/material/sidenav'\nimport { MatToolbarModule } from '@angular/material/toolbar'\nimport { MatNativeDateModule } from '@angular/material/core'\n\n//Angular Material Modules\n\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    DialogAlertComponent,\n    HeaderComponent,\n    NavComponent,\n    GameCrudComponent,\n    GameDetailsComponent,\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    HttpClientModule,\n    BrowserAnimationsModule,\n    MatSidenavModule,\n    MatSnackBarModule,\n    MatSelectModule,\n    MatInputModule,\n    FormsModule,\n    ReactiveFormsModule,\n    MatIconModule,\n    MatButtonModule,\n    MatDialogModule,\n    MatToolbarModule,\n    MatNativeDateModule,\n    MatDatepickerModule\n  ],\n  exports: [],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -1622,9 +1611,6 @@
                         },
                         {
                             "name": "GameDetailsComponent"
-                        },
-                        {
-                            "name": "GamesComponent"
                         },
                         {
                             "name": "NavComponent"
@@ -1659,13 +1645,49 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-75353c82cec044c91a860ff15b25ebaaadedfc8e8876aa4880a2850a9414100bc77d32f5846976d1f38f95b73ffd5e17fdbfa28247e7f123b49cf7b9434145ac",
+            "id": "module-AppRoutingModule-498f5249e4af8fd009c8b0a3baf002d3695888b14a12dfc244620c35d08a763c630f22de558e73211683382c1a31485190a798981ee47d2364456578cdd7bc9e",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core'\nimport { Routes, RouterModule } from '@angular/router' // CLI imports router\nimport { GameCrudComponent } from './views/game-crud/game-crud/game-crud.component'\nimport { GamesComponent } from './views/game-crud/games/games.component'\nimport { GameDetailsComponent } from './views/game-details/game-details.component'\nconst routes: Routes = [\n  {\n    path: 'games/create',\n    component: GameCrudComponent\n  },\n  {\n    path: 'games/:id/edit',\n    component: GameCrudComponent\n  },\n  {\n    path: 'games',\n    component: GamesComponent\n  },\n  {\n    path: 'games/:id',\n    component: GameDetailsComponent\n  }\n] // sets up routes constant where you define your routes\n\n// configures NgModule imports and exports\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core'\nimport { Routes, RouterModule } from '@angular/router' // CLI imports router\nimport { GameCrudComponent } from './views/games/game-crud/game-crud.component' \nimport { GamesComponent } from './views/games/games/games.component' \nimport { GameDetailsComponent } from './views/games/game-details/game-details.component' \nconst routes: Routes = [\n  {\n    path: 'games/create',\n    component: GameCrudComponent\n  },\n  {\n    path: 'games/:id/edit',\n    component: GameCrudComponent\n  },\n  {\n    path: 'games',\n    component: GamesComponent\n  },\n  {\n    path: 'games/:id',\n    component: GameDetailsComponent\n  }\n] \n\n// configures NgModule imports and exports\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "MaterialModule",
+            "id": "module-MaterialModule-fa822c0fab2c2176bf47b665f3ded74842e69f3d58df3fce983ccbf0e92072725edc71c981dcf59a5835a2abaff56fd915118821416d700f2d779bc330f73024",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/modules/material/material.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core'\nimport { CommonModule } from '@angular/common'\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms'\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations'\nimport { MatSelectModule } from '@angular/material/select'\nimport { MatInputModule } from '@angular/material/input'\nimport { MatFormFieldModule } from '@angular/material/form-field'\nimport { MatDatepickerModule } from '@angular/material/datepicker'\nimport { MatIconModule } from '@angular/material/icon'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatSnackBarModule } from '@angular/material/snack-bar'\nimport { MatDialogModule } from '@angular/material/dialog'\nimport { MatSidenavModule } from '@angular/material/sidenav'\nimport { MatToolbarModule } from '@angular/material/toolbar'\nimport { MatNativeDateModule } from '@angular/material/core'\n/////////\n\n@NgModule({\n  imports: [\n    CommonModule,\n    MatSidenavModule,\n    MatFormFieldModule,\n    MatSnackBarModule,\n    MatSelectModule,\n    MatInputModule,\n    FormsModule,\n    ReactiveFormsModule,\n    MatIconModule,\n    MatButtonModule,\n    MatDialogModule,\n    MatToolbarModule,\n    MatNativeDateModule\n  ],\n  exports: [\n    MatSidenavModule,\n    MatFormFieldModule,\n    MatSnackBarModule,\n    MatSelectModule,\n    MatInputModule,\n\n    ReactiveFormsModule,\n    MatIconModule,\n    MatButtonModule,\n    MatDialogModule,\n    MatToolbarModule,\n    MatDatepickerModule\n  ],\n  providers: [MatDatepickerModule]\n})\nexport class MaterialModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -1770,7 +1792,7 @@
                 "name": "moment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/views/game-crud/game-crud/game-crud.component.ts",
+                "file": "src/app/views/games/game-crud/game-crud.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1780,7 +1802,7 @@
                 "name": "MY_FORMATS",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/views/game-crud/game-crud/game-crud.component.ts",
+                "file": "src/app/views/games/game-crud/game-crud.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
@@ -1991,12 +2013,12 @@
                     "defaultValue": "(args: Page) => ({\n  props: args,\n})"
                 }
             ],
-            "src/app/views/game-crud/game-crud/game-crud.component.ts": [
+            "src/app/views/games/game-crud/game-crud.component.ts": [
                 {
                     "name": "moment",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/views/game-crud/game-crud/game-crud.component.ts",
+                    "file": "src/app/views/games/game-crud/game-crud.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -2006,7 +2028,7 @@
                     "name": "MY_FORMATS",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/views/game-crud/game-crud/game-crud.component.ts",
+                    "file": "src/app/views/games/game-crud/game-crud.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
@@ -2059,7 +2081,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -2099,7 +2121,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/views/game-crud/game-crud/game-crud.component.ts",
+                "filePath": "src/app/views/games/game-crud/game-crud.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "GameCrudComponent",
@@ -2108,7 +2130,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/views/game-crud/game-crud/game-crud.component.ts",
+                "filePath": "src/app/views/games/game-crud/game-crud.component.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -2118,7 +2140,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/views/game-crud/game-crud/game-crud.component.ts",
+                "filePath": "src/app/views/games/game-crud/game-crud.component.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -2128,16 +2150,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/views/game-crud/games/games.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "GamesComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/views/game-details/game-details.component.ts",
+                "filePath": "src/app/views/games/game-details/game-details.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "GameDetailsComponent",
@@ -2146,12 +2159,21 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/views/game.model.ts",
+                "filePath": "src/app/views/games/game.model.ts",
                 "type": "interface",
                 "linktype": "interface",
                 "name": "Game",
                 "coveragePercent": 0,
                 "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/views/games/games/games.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "GamesComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
