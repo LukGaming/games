@@ -3,7 +3,7 @@
     <div class="description mt-4">
         {{ game?.description }}
     </div>
-    <div class=" mt-4">
+    <div class="mt-4">
         <div class="video" *ngFor="let  video of game?.game_videos; index as i">
             <video controls class="img-fluid">
                 <source [src]="'http://localhost:8000/' + video.caminho_video_game" type="video/mp4">

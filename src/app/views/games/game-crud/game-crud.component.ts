@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { Game } from '../../game.model'
+import { Game } from '../game.model'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { GameCrudService } from 'src/app/services/game-crud.service'
+
 import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS
@@ -17,6 +18,7 @@ import * as _moment from 'moment'
 import { default as _rollupMoment, Moment } from 'moment'
 import { Observer } from 'rxjs'
 import { ActivatedRoute, Router } from '@angular/router'
+
 const moment = _rollupMoment || _moment
 export const MY_FORMATS = {
   parse: {
@@ -42,6 +44,7 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
   ]
 })
+
 export class GameCrudComponent implements OnInit {
   constructor (
     private gameCrudService: GameCrudService,

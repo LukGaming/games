@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { Game } from '../views/game.model'
+import { Game } from '../views/games/game.model'
 import { Observable } from 'rxjs'
 import { MatSnackBar } from '@angular/material/snack-bar'
 
