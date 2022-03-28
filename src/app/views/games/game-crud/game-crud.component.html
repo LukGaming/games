@@ -9,14 +9,14 @@
             nome
             do jogo é obrigatório </div>
         <mat-form-field class="input" appearance="fill">
-            
-                <mat-label>Ano de lançamento</mat-label>
-                <input [(ngModel)]="year" [formControl]="date" formControlName="release_year" matInput
-                    [matDatepicker]="picker" />
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker startView="multi-year" (yearSelected)="chosenYearHandler($event, picker)">
-                </mat-datepicker>
-            
+
+            <mat-label>Ano de lançamento</mat-label>
+            <input [(ngModel)]="year" [formControl]="date" formControlName="release_year" matInput
+                [matDatepicker]="picker" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year" (yearSelected)="chosenYearHandler($event, picker)">
+            </mat-datepicker>
+
         </mat-form-field>
         <div class="error-message"
             *ngIf="!validateGame.get('release_year')?.valid && validateGame.get('release_year')?.touched">A data
@@ -34,8 +34,8 @@
                 Imagens
             </label>
         </div>
-        <input #fileInput   type="file" formControlName="images" id="images" (change)="onFileInput($event)" multiple
-            style="display: none;" />
+        <input #fileInput type="file" formControlName="images" accept=".jpg, .jpeg, .png" id="images"
+            (change)="onFileInput($event)" multiple style="display: none;" />
         <div class="imagens-enviadas-text">
             <div *ngIf="images.length > 0">Novas Imagens</div>
         </div>
@@ -55,13 +55,10 @@
             </label>
             <div *ngIf="videos.length > 0">{{ videos.length }} videos</div>
         </div>
-
-
-
-        <input type="file" id="videos" (change)="videosInput($event)" multiple style="display: none;" />
+        <input type="file" accept=".mp4" id="videos" (change)="videosInput($event)" multiple style="display: none;" />
         <!--Imagens já enviadas -->
         <div class="imagens-enviadas-text">
-            <div *ngIf="imagesAlreadyUploaded">Imagens já enviadas</div>
+            <div *ngIf="imagesAlreadyUploaded.length > 0">Imagens já enviadas</div>
         </div>
 
         <div class="imagens-preview">
@@ -81,4 +78,8 @@
     </div>
     <button [disabled]="validateGame.invalid" class="btn-submit" mat-raised-button color="primary"
         (click)="submit($event)">{{method}}</button>
+    <div class="progress" *ngIf="isSubmiting">
+        <div class="progress-bar" [style.width]="progress + '%'" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="100">{{progress}}%</div>
+    </div>
 </div>

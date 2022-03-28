@@ -10,6 +10,7 @@ export class EllipsisComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('teste')
   }
 
 }

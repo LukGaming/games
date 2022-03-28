@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/angular';
 
-import { EllipsisComponent } from './ellipsis/ellipsis.component'
+import { EllipsisComponent } from './ellipsis/ellipsis.component';
 
 export default {
   /* 👇 The title prop is optional.

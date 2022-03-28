@@ -18,6 +18,7 @@ import * as _moment from 'moment'
 import { default as _rollupMoment, Moment } from 'moment'
 import { Observer } from 'rxjs'
 import { ActivatedRoute, Router } from '@angular/router'
+import { HttpEvent, HttpEventType } from '@angular/common/http'
 
 const moment = _rollupMoment || _moment
 export const MY_FORMATS = {
@@ -44,13 +45,14 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
   ]
 })
-
 export class GameCrudComponent implements OnInit {
   constructor (
     private gameCrudService: GameCrudService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
+  isSubmiting: boolean = false
+  progress: number = 0
   method: string = ''
   create: boolean = false
   edit: boolean = false
@@ -117,13 +119,24 @@ export class GameCrudComponent implements OnInit {
         formData.append('videos[]', this.videos[i])
       }
       if (this.create) {
-        this.gameCrudService.post(formData).subscribe(data => {
-          this.gameCrudService.snackBarMessage(
-            'Jogo Criado com sucesso',
-            'success'
-          )
-          this.resetForm()
-        })
+        this.isSubmiting = true
+        this.gameCrudService
+          .post(formData)
+          .subscribe((event: HttpEvent<Object>) => {
+            this.isSubmiting = true
+            if (event.type == HttpEventType.Response) {
+              this.gameCrudService.snackBarMessage(
+                'Jogo Criado com sucesso',
+                'success'
+              )
+            } else if (event.type == HttpEventType.UploadProgress) {
+              this.progress = Math.round(
+                (event.loaded! * 100) / event['total']!
+              )
+            }
+
+            this.resetForm()
+          })
       } else {
         this.gameCrudService.patch(formData).subscribe(data => {
           this.gameCrudService.snackBarMessage(

@@ -1,5 +1,6 @@
 form {
   margin: 10px;
+  color: white;
 }
 .inputs-form {
   display: flex;
@@ -35,6 +36,8 @@ form {
 }
 .images_games_label {
   font-size: 1.2rem;
+  color: white;
+  margin-top: 10px;
 }
 .btn-submit {
   margin-top: 20px;
@@ -71,5 +74,14 @@ form {
   flex-direction: row;
   justify-content: center;
   font-size: 2rem;
-  color: green;
+  color: white;
+}
+mat-form-field{
+  background-color: #050505;
+  color: white;
+  border: 1px solid white;
+  margin: 5px;
+}
+mat-label{
+  color: white;
 }

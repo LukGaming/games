@@ -4,8 +4,10 @@ import { AppRoutingModule } from './app-routing.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http'
 
-
 //Components//
+//Bootstrap Components
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel'
+//.Bootstrap Components
 
 import { NavComponent } from './components/template/nav/nav.component'
 import { HeaderComponent } from './components/template/header/header.component'
@@ -19,7 +21,7 @@ import { GamesComponent } from './views/games/games/games.component'
 //Angular Material Modules
 import { FormsModule } from '@angular/forms'
 
-import {  ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 import { MatSelectModule } from '@angular/material/select'
 import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -30,13 +32,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatNativeDateModule } from '@angular/material/core';
-import { ButtonComponent } from './stories/button/button.component';
-import { EllipsisComponent } from './stories/ellipsis/ellipsis.component';
-
+import { MatNativeDateModule } from '@angular/material/core'
 
 //Angular Material Modules
-
 
 @NgModule({
   declarations: [
@@ -45,9 +43,7 @@ import { EllipsisComponent } from './stories/ellipsis/ellipsis.component';
     HeaderComponent,
     NavComponent,
     GameCrudComponent,
-    GameDetailsComponent,
-    ButtonComponent,
-    EllipsisComponent,
+    GameDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +61,8 @@ import { EllipsisComponent } from './stories/ellipsis/ellipsis.component';
     MatDialogModule,
     MatToolbarModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MdbCarouselModule
   ],
   exports: [],
   providers: [],
