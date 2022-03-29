@@ -106,18 +106,18 @@ export class GameCrudComponent implements OnInit {
     this.images.splice(index, 1)
   }
   submit ($event: any) {
+    var formData = new FormData()
+    formData.append('name', this.game.name)
+    formData.append('release_year', this.game.release_year)
+    formData.append('description', this.game.description)
+    for (let i = 0; i < this.game.images.length; i++) {
+      formData.append('images[]', this.game.images[i])
+    }
+    for (let i = 0; i < this.videos.length; i++) {
+      formData.append('videos[]', this.videos[i])
+    }
     $event.preventDefault()
     if (this.validateGame.valid) {
-      var formData = new FormData()
-      formData.append('name', this.game.name)
-      formData.append('release_year', this.game.release_year)
-      formData.append('description', this.game.description)
-      for (let i = 0; i < this.game.images.length; i++) {
-        formData.append('images[]', this.game.images[i])
-      }
-      for (let i = 0; i < this.videos.length; i++) {
-        formData.append('videos[]', this.videos[i])
-      }
       if (this.create) {
         this.isSubmiting = true
         this.gameCrudService
@@ -138,7 +138,7 @@ export class GameCrudComponent implements OnInit {
             this.resetForm()
           })
       } else {
-        this.gameCrudService.patch(formData).subscribe(data => {
+        this.gameCrudService.patch(this.game, this.game.id).subscribe(data => {
           this.gameCrudService.snackBarMessage(
             'Jogo Editado com sucesso',
             'success'
@@ -148,12 +148,6 @@ export class GameCrudComponent implements OnInit {
     }
   }
   resetForm () {
-    this.game.images = []
-    this.game.name = ''
-    this.game.release_year = ''
-    this.game.description = ''
-    this.images = []
-    this.images_to_upload = []
     this.validateGame.reset()
   }
   editGame () {

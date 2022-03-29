@@ -21,10 +21,13 @@
         <div class="error-message"
             *ngIf="!validateGame.get('release_year')?.valid && validateGame.get('release_year')?.touched">A data
             de lançamento é obrigatória </div>
-        <mat-form-field class="input" appearance="fill">
+
+        <mat-form-field class="input">
             <mat-label>Descricao</mat-label>
-            <input matInput [(ngModel)]="game.description" formControlName="description" name="description">
+            <textarea formControlName="description" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
         </mat-form-field>
+
         <div class="error-message"
             *ngIf="!validateGame.get('description')?.valid && validateGame.get('description')?.touched">A data
             de lançamento é obrigatória </div>

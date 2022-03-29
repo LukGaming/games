@@ -16,8 +16,8 @@ export class GameCrudService {
       reportProgress: true
     })
   }
-  patch (game: any): Observable<any> {
-    return this.http.patch<any>(this.baseUrl, game)
+  patch (game: any, id: number): Observable<any> {
+    return this.http.patch<any>(`${this.baseUrl}/${id}`, game)
   }
   getById (id: any): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${id}`)

@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatNativeDateModule } from '@angular/material/core'
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 //Angular Material Modules
 
@@ -62,7 +63,8 @@ import { MatNativeDateModule } from '@angular/material/core'
     MatToolbarModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MdbCarouselModule
+    MdbCarouselModule,
+    TextFieldModule
   ],
   exports: [],
   providers: [],
